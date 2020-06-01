@@ -1,0 +1,9 @@
+<h1 id="tablelabel">Prueba de valores </h1>
+
+<p> aquí vamos a mostrar datos</p>
+
+<p *ngIf="!values"><em>Cargando...</em></p>
+
+<p *ngFor="let value of values">
+  {{value.id}}, {{value.name}}
+</p>
