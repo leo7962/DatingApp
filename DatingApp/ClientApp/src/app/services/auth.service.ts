@@ -6,7 +6,7 @@ import { map } from "rxjs/operators";
   providedIn: "root",
 })
 export class AuthService {
-  myAppUrl: string = "";
+  myAppUrl: string = "";  
 
   constructor(private http: HttpClient, @Inject("BASE_URL") baseUrl: string) {
     this.myAppUrl = baseUrl;
@@ -21,5 +21,9 @@ export class AuthService {
         }
       })
     );
+  }
+
+  register(model: any) {
+    return this.http.post(this.myAppUrl + 'api/auth/register', model);
   }
 }

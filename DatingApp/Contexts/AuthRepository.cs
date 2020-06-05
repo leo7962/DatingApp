@@ -1,7 +1,6 @@
 ﻿using DatingApp.Interfaces;
 using DatingApp.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Threading.Tasks;
 
 namespace DatingApp.Contexts
@@ -29,7 +28,7 @@ namespace DatingApp.Contexts
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
             using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
-            {                
+            {
                 var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
 
                 for (int i = 0; i < computedHash.Length; i++)
@@ -44,8 +43,8 @@ namespace DatingApp.Contexts
         public async Task<User> Register(User user, string password)
         {
             byte[] passwordHash, passwordSalt;
-            CreatePasswordHash(password,out passwordHash, out passwordSalt);
-            
+            CreatePasswordHash(password, out passwordHash, out passwordSalt);
+
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 

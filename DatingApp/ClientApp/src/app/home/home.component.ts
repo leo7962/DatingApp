@@ -7,38 +7,23 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomeComponent implements OnInit{
 
-  registerMode = false;
-  public values: Values[];
+  registerMode = false; 
   myAppUrl: string = "";
 
   constructor(private http: HttpClient, @Inject("BASE_URL") baseUrl: string) {    
     this.myAppUrl = baseUrl;
   }
 
-  ngOnInit(){
-    this.getValues();
+  ngOnInit(){    
   }
 
   registerToggle(){
     this.registerMode = true;
   }
 
-  getValues() {
-    this.http.get<Values[]>(this.myAppUrl + "api/Values/").subscribe(
-      (result) => {
-        this.values = result;
-      },
-      (error) => console.error(error)
-    );
-  }
 
   cancelRegisterMode(registerMode: boolean) {
     this.registerMode = registerMode;
-
   }
 }
 
-interface Values {
-  id: number;
-  name: string;
-}
