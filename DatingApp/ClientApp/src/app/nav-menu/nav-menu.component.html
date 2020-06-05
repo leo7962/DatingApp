@@ -1,44 +1,64 @@
 <header>
-  <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
-  >
-    <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">DatingApp</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
-        (click)="toggle()"
-      >
-        <span class="navbar-toggler-icon"></span>
+  <nav class="navbar navbar-expand-ls navbar-expand-md navbar-dark bg-light">
+    <a class="navbar-brand text-dark" href="#">Dating App</a>
+
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link text-dark" href="#">Matches</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="#">Lists</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="#">Messages</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" (click)="logout()">Logout</a>
+      </li>
+    </ul>
+
+    <div *ngIf="loggedIn()" class="dropdown">
+      <button class="dropdown-toggle">
+        Bienvenido Usuario
       </button>
-      <div
-        class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
-        [ngClass]="{ show: isExpanded }"
-      >
-        <ul class="navbar-nav flex-grow">
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
-            >
-          </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
-            >
-          </li>
-        </ul>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Perfil</a>
+        <div class="drpdown-divider"></div>
+        <a class="dropdown-item" href="#"
+          ><i class="fa fa-sign-out"></i> Logout</a
+        >
       </div>
     </div>
+
+    <form
+      *ngIf="!loggedIn()"
+      #loginForm="ngForm"
+      class="form-inline my-2 my-lg-0"
+      (ngSubmit)="login()"
+    >
+      <input
+        class="form-control mr-sm-2"
+        type="text"
+        name="username"
+        placeholder="Username"
+        required
+        [(ngModel)]="model.username"
+      />
+      <input
+        class="form-control mr-sm-2"
+        type="password"
+        name="password"
+        placeholder="Password"
+        required
+        [(ngModel)]="model.password"
+      />
+      <button
+        [disabled]="!loginForm.valid"
+        class="btn btn-success my-2 my-sm-0"
+        type="submit"
+      >
+        Login
+      </button>
+    </form>
   </nav>
 </header>
