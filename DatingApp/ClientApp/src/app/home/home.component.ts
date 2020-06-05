@@ -18,8 +18,9 @@ export class HomeComponent implements OnInit{
   ngOnInit(){
     this.getValues();
   }
+
   registerToggle(){
-    this.registerMode = !this.registerMode;
+    this.registerMode = true;
   }
 
   getValues() {
@@ -29,6 +30,10 @@ export class HomeComponent implements OnInit{
       },
       (error) => console.error(error)
     );
+  }
+
+  cancelRegisterMode(registerMode: boolean) {
+    this.registerMode = registerMode;
   }
 }
 
