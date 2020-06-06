@@ -19,7 +19,7 @@ export class NavMenuComponent implements OnInit {
         console.log("Te has logueado satisfactoriamente");
       },
       (error) => {
-        console.log("logueo fallido");
+        console.log(error);
       }
     );
   }
