@@ -3,6 +3,9 @@
 /* Provide sufficient contrast against white background */
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 @import '../node_modules/font-awesome/css/font-awesome.min.css';
+@import '../node_modules/alertifyjs/build/css/alertify.min.css';
+@import '../node_modules/alertifyjs/build/css/themes/bootstrap.min.css';
+@import '../node_modules/bootswatch/dist/minty/bootstrap.min.css';
 a {
   color: #0366d6;
 }
