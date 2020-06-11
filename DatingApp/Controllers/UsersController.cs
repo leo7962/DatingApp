@@ -53,7 +53,7 @@ namespace DatingApp.Controllers
                 return Unauthorized();
             }
 
-            var userFromRepo = await _datingRepository.GetUser(id);
+            User userFromRepo = await _datingRepository.GetUser(id);
 
             _mapper.Map(userForUpdateDto, userFromRepo);
 
