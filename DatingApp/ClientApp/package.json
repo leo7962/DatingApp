@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "echo hello && ng serve",
     "build": "ng build",
     "build:ssr": "ng run DatingApp:server:dev",
     "test": "ng test",

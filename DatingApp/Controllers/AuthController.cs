@@ -37,12 +37,12 @@ namespace DatingApp.Controllers
                 return BadRequest("¡El nombre de usuario ya existe!");
             }
 
-            var userToCreate = new User
+            User userToCreate = new User
             {
                 Username = userForRegisterDto.Username
             };
 
-            var createdUser = await _authRepository.Register(userToCreate, userForRegisterDto.Password);
+            User createdUser = await _authRepository.Register(userToCreate, userForRegisterDto.Password);
 
             return StatusCode(201);
         }
@@ -50,33 +50,33 @@ namespace DatingApp.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
-            var userFromRepo = await _authRepository.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
+            User userFromRepo = await _authRepository.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
 
             if (userFromRepo == null)
             {
                 return Unauthorized();
             }
 
-            var claims = new[]
+            Claim[] claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
                 new Claim(ClaimTypes.Name, userFromRepo.Username)
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
+            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
 
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+            SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
 
-            var tokenDescriptor = new SecurityTokenDescriptor
+            SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now.AddHours(6),
                 SigningCredentials = creds
             };
 
-            var tokenHandler = new JwtSecurityTokenHandler();
+            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
 
-            var token = tokenHandler.CreateToken(tokenDescriptor);
+            SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
 
             return Ok(new
             {

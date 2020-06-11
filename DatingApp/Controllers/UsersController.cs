@@ -4,7 +4,9 @@ using DatingApp.Interfaces;
 using DatingApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace DatingApp.Controllers
@@ -26,9 +28,9 @@ namespace DatingApp.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsers()
         {
-            var users = await _datingRepository.GetUsers();
+            IEnumerable<User> users = await _datingRepository.GetUsers();
 
-            var usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
+            IEnumerable<UserForListDto> usersToReturn = _mapper.Map<IEnumerable<UserForListDto>>(users);
 
             return Ok(usersToReturn);
         }
@@ -36,11 +38,31 @@ namespace DatingApp.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
-            var user = await _datingRepository.GetUser(id);
+            User user = await _datingRepository.GetUser(id);
 
-            var userToReturn = _mapper.Map<UserForDetailedDto>(user);
+            UserForDetailedDto userToReturn = _mapper.Map<UserForDetailedDto>(user);
 
             return Ok(userToReturn);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var userFromRepo = await _datingRepository.GetUser(id);
+
+            _mapper.Map(userForUpdateDto, userFromRepo);
+
+            if (await _datingRepository.SaveAll())
+            {
+                return NoContent();
+            }
+
+            throw new Exception($"Actualización del usuario {id} ha fallado en guardar");
         }
     }
 }

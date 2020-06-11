@@ -11,12 +11,11 @@ namespace DatingApp.Contexts
         {
             if (!context.Users.Any())
             {
-                var userData = System.IO.File.ReadAllText("Contexts/UserSeedData.json");
-                var users = JsonConvert.DeserializeObject<List<User>>(userData);
-                foreach (var user in users)
+                string userData = System.IO.File.ReadAllText("Contexts/UserSeedData.json");
+                List<User> users = JsonConvert.DeserializeObject<List<User>>(userData);
+                foreach (User user in users)
                 {
-                    byte[] passwordhash, passwordSalt;
-                    CreatePasswordHash("password", out passwordhash, out passwordSalt);
+                    CreatePasswordHash("password", out byte[] passwordhash, out byte[] passwordSalt);
 
                     user.PasswordHash = passwordhash;
                     user.PasswordSalt = passwordSalt;
@@ -28,9 +27,9 @@ namespace DatingApp.Contexts
             }
         }
 
-        static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
-            using (var hmac = new System.Security.Cryptography.HMACSHA512())
+            using (System.Security.Cryptography.HMACSHA512 hmac = new System.Security.Cryptography.HMACSHA512())
             {
                 passwordSalt = hmac.Key;
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));

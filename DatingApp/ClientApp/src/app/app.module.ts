@@ -25,6 +25,9 @@ import { AlertifyService } from './services/alertify.service';
 import { UserService } from './services/user.service';
 import { MemberDetailResolver } from './resolvers/member-detail.resolver';
 import { MemberListResolver } from './resolvers/member-list.resolver';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { MemberEditResolver } from './resolvers/member-edit.resolver';
+import { PreventUnsaveChanges } from './guards/prevent-unsaved-changes.guard';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -41,6 +44,7 @@ export function tokenGetter() {
     MessagesComponent,
     MemberCardComponent,
     MemberDetailComponent,
+    MemberEditComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -73,6 +77,12 @@ export function tokenGetter() {
             component: MemberDetailComponent,
             resolve: { user: MemberDetailResolver },
           },
+          {
+            path: 'member/edit',
+            component: MemberEditComponent,
+            resolve: { user: MemberEditResolver },
+            canDeactivate: [PreventUnsaveChanges]
+          },
           { path: 'messages', component: MessagesComponent },
           { path: 'lists', component: ListsComponent },
         ],
@@ -88,7 +98,9 @@ export function tokenGetter() {
     AuthGuard,
     UserService,
     MemberDetailResolver,
-    MemberListResolver
+    MemberListResolver,
+    MemberEditResolver,
+    PreventUnsaveChanges
   ],
   bootstrap: [AppComponent],
 })
