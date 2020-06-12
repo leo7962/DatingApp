@@ -97,5 +97,40 @@ namespace DatingApp.Controllers
 
             return BadRequest("No se pudo agregar la foto");
         }
+
+        [HttpPost("{id}/setMain")]
+        public async Task<IActionResult> SetMainPhoto(int userId, int id)
+        {
+            if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var user = await _datingRepository.GetUser(userId);
+
+            if (!user.Photos.Any(p => p.Id == id))
+            {
+                return Unauthorized();
+            }
+
+            var photoFromRepo = await _datingRepository.GetPhoto(id);
+
+            if (photoFromRepo.IsMain)
+            {
+                return BadRequest("Esta es la foto principal");
+            }
+
+            var currentMainPhoto = await _datingRepository.GetMainPhotoForUser(userId);
+            currentMainPhoto.IsMain = false;
+
+            photoFromRepo.IsMain = true;
+
+            if (await _datingRepository.SaveAll())
+            {
+                return NoContent();
+            }
+
+            return BadRequest("Esta foto no pudo ser la principal");
+        }
     }
 }

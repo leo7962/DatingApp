@@ -5,9 +5,10 @@
     </div>
     <div class="col-sm-8 col-md-8 col-lg-8">
       <div *ngIf="editForm.dirty" class="alert alert-info">
-        <strong>Información:</strong> ¡Tienes cambios realizados, algun cambio que no haya sido guardado podría perderse! 
-      </div>      
-    </div>   
+        <strong>Información:</strong> ¡Tienes cambios realizados, algun cambio
+        que no haya sido guardado podría perderse!
+      </div>
+    </div>
   </div>
   <div class="row">
     <div class="col-sm-4 col-md-4 col-lg-4">
@@ -19,24 +20,30 @@
         />
         <div class="card-body">
           <div>
-            <strong>Location:</strong>
+            <strong>Lugar:</strong>
             <p>{{ user.city }}, {{ user.country }}</p>
           </div>
           <div>
-            <strong>Age:</strong>
+            <strong>Edad:</strong>
             <p>{{ user.age }}</p>
           </div>
           <div>
-            <strong>Last Active:</strong>
+            <strong>Última actividad:</strong>
             <p>{{ user.lastActive }}</p>
           </div>
           <div>
-            <strong>Member since:</strong>
+            <strong>Miembro desde:</strong>
             <p>{{ user.created }}</p>
           </div>
         </div>
         <div class="card-footer">
-          <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success btn-block">Guardar cambios</button>
+          <button
+            [disabled]="!editForm.dirty"
+            form="editForm"
+            class="btn btn-success btn-block"
+          >
+            Guardar cambios
+          </button>
         </div>
       </div>
     </div>
@@ -44,7 +51,12 @@
       <div class="tab-panel">
         <tabset class="member-tabset">
           <tab heading="Editar perfil">
-            <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()" #form="ngForm">
+            <form
+              #editForm="ngForm"
+              id="editForm"
+              (ngSubmit)="updateUser()"
+              #form="ngForm"
+            >
               <h4>Descripción</h4>
               <textarea
                 name="introduction"
@@ -53,7 +65,7 @@
                 [(ngModel)]="user.introduction"
               >
               </textarea>
-              <h4>Looking For</h4>
+              <h4>Buscando</h4>
               <textarea
                 name="lookingFor"
                 rows="6"
@@ -61,7 +73,7 @@
                 [(ngModel)]="user.lookingFor"
               >
               </textarea>
-              <h4>Intereses</h4>
+              <h4>Interesés</h4>
               <textarea
                 name="interests"
                 rows="6"
@@ -89,7 +101,10 @@
             </form>
           </tab>
           <tab heading="Editar Fotos">
-            <p>Fotos para editar aquí</p>
+            <app-photo-editor
+              [photos]="user.photos"
+              (getMemberPhotoChange)="updateMainPhoto($event)"
+            ></app-photo-editor>
           </tab>
         </tabset>
       </div>
