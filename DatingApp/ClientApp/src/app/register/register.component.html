@@ -1,27 +1,97 @@
-<form #registerForm="ngForm" (ngSubmit)="register()">
+<form [formGroup]="registerForm" (ngSubmit)="register()">
   <h2 class="text-center text-primary">Sign Up</h2>
 
   <hr />
   <div class="form-group">
     <input
       type="text"
+      [ngClass]="{
+        'is-invalid':
+          registerForm.get('username').errors &&
+          registerForm.get('username').touched
+      }"
       class="form-control"
-      required
-      name="username"
-      [(ngModel)]="model.username"
+      formControlName="username"
       placeholder="Username"
     />
+    <div class="invalid-feedback">
+      Por favor seleccione un nombre de usuario
+    </div>
   </div>
-  
+
   <div class="form-group">
     <input
       type="password"
+      [ngClass]="{
+        'is-invalid':
+          registerForm.get('password').errors &&
+          registerForm.get('password').touched
+      }"
       class="form-control"
-      required
-      name="password"
-      [(ngModel)]="model.password"
+      formControlName="password"
       placeholder="Password"
     />
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        registerForm.get('password').hasError('required') &&
+        registerForm.get('password').touched
+      "
+    >
+      Por favor ingrese una contraseña
+    </div>
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        registerForm.get('password').hasError('minlength') &&
+        registerForm.get('password').touched
+      "
+    >
+      la contraseña debe tener mínimo 4 carácteres
+    </div>
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        registerForm.get('password').hasError('maxlength') &&
+        registerForm.get('password').touched
+      "
+    >
+      la contraseña debe tener máximo 8 carácteres 
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input
+      type="password"
+      [ngClass]="{
+        'is-invalid':
+          registerForm.get('confirmPassword').errors &&
+          registerForm.get('confirmPassword').touched || 
+          registerForm.get('confirmPassword').touched &&
+          registerForm.hasError('mismatch')
+      }"
+      class="form-control"
+      formControlName="confirmPassword"
+      placeholder="Confirm password"
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        registerForm.get('confirmPassword').hasError('required') &&
+        registerForm.get('confirmPassword').touched 
+      "
+    >
+      Por favor ingrese una contraseña
+    </div>
+    <div
+      class="invalid-feedback"
+      *ngIf="
+        registerForm.hasError('mismatch') &&
+        registerForm.get('confirmPassword').touched 
+      "
+    >
+      la contraseña debe coincidir
+    </div>
   </div>
 
   <div class="form-group text-center">
@@ -31,3 +101,6 @@
     </button>
   </div>
 </form>
+
+<p>Form value: {{ registerForm.value | json }}</p>
+<p>Form status: {{ registerForm.status | json }}</p>

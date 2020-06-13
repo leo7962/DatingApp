@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using System;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -158,9 +157,9 @@ namespace DatingApp.Controllers
 
             if (photoFromRepo.PublicId != null)
             {
-                var deleteParams = new DeletionParams(photoFromRepo.PublicId);
+                DeletionParams deleteParams = new DeletionParams(photoFromRepo.PublicId);
 
-                var result = await _cloudinary.DestroyAsync(deleteParams);
+                DeletionResult result = await _cloudinary.DestroyAsync(deleteParams);
 
                 if (result.Result == "ok")
                 {

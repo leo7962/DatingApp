@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -61,6 +61,7 @@ export function tokenGetter() {
       },
     }),
     FormsModule,
+    ReactiveFormsModule,
     FileUploadModule,
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),

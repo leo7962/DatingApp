@@ -81,7 +81,7 @@ namespace DatingApp.Controllers
 
             SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
 
-            var user = _mapper.Map<UserForListDto>(userFromRepo);
+            UserForListDto user = _mapper.Map<UserForListDto>(userFromRepo);
 
 
             return Ok(new
