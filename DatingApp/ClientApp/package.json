@@ -22,7 +22,7 @@
     "@angular/platform-server": "9.1.11",
     "@angular/router": "9.1.11",
     "@auth0/angular-jwt": "^4.2.0",
-    "@kolkov/ngx-gallery": "^1.2.0",
+    "@kolkov/ngx-gallery": "^1.2.3",
     "@nguniversal/module-map-ngfactory-loader": "8.1.1",
     "alertifyjs": "^1.13.1",
     "aspnet-prerendering": "^3.0.1",

@@ -8,6 +8,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -15,7 +17,6 @@ import { HomeComponent } from './home/home.component';
 import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './services/errorinterceptor';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -53,6 +54,7 @@ export function tokenGetter() {
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
+    BrowserAnimationsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -61,6 +63,7 @@ export function tokenGetter() {
       },
     }),
     FormsModule,
+    BsDatepickerModule.forRoot(),
     ReactiveFormsModule,
     FileUploadModule,
     TabsModule.forRoot(),
@@ -94,8 +97,7 @@ export function tokenGetter() {
         ],
       },
       { path: '**', redirectTo: '', pathMatch: 'full' },
-    ]),
-    BrowserAnimationsModule,
+    ]),    
   ],
   providers: [
     AuthService,
