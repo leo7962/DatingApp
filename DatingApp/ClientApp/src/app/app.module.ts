@@ -10,6 +10,7 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { TimeagoModule } from 'ngx-timeago';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -68,6 +69,7 @@ export function tokenGetter() {
     FileUploadModule,
     TabsModule.forRoot(),
     BsDropdownModule.forRoot(),
+    TimeagoModule.forRoot(),
     NgxGalleryModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
