@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { TimeagoModule } from 'ngx-timeago';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
@@ -34,7 +35,6 @@ import { MemberEditResolver } from './resolvers/member-edit.resolver';
 import { PreventUnsaveChanges } from './guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 
-
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
@@ -51,7 +51,7 @@ export function tokenGetter() {
     MemberCardComponent,
     MemberDetailComponent,
     MemberEditComponent,
-    PhotoEditorComponent
+    PhotoEditorComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -72,6 +72,7 @@ export function tokenGetter() {
     BsDropdownModule.forRoot(),
     TimeagoModule.forRoot(),
     PaginationModule.forRoot(),
+    ButtonsModule.forRoot(),
     NgxGalleryModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
@@ -94,14 +95,14 @@ export function tokenGetter() {
             path: 'member/edit',
             component: MemberEditComponent,
             resolve: { user: MemberEditResolver },
-            canDeactivate: [PreventUnsaveChanges]
+            canDeactivate: [PreventUnsaveChanges],
           },
           { path: 'messages', component: MessagesComponent },
           { path: 'lists', component: ListsComponent },
         ],
       },
       { path: '**', redirectTo: '', pathMatch: 'full' },
-    ]),    
+    ]),
   ],
   providers: [
     AuthService,
@@ -112,7 +113,7 @@ export function tokenGetter() {
     MemberDetailResolver,
     MemberListResolver,
     MemberEditResolver,
-    PreventUnsaveChanges
+    PreventUnsaveChanges,
   ],
   bootstrap: [AppComponent],
 })
