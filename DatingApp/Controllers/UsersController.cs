@@ -79,5 +79,41 @@ namespace DatingApp.Controllers
 
             throw new Exception($"Actualización del usuario {id} ha fallado en guardar");
         }
+
+        [HttpPost("{id}/like/{recipientId}")]
+        public async Task<IActionResult> LikeUser(int id, int recipientId)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var like = await _datingRepository.GetLike(id, recipientId);
+
+            if (like != null)
+            {
+                return BadRequest("Ya te gusta este usuario");
+            }
+
+            if (await _datingRepository.GetUser(recipientId) == null)
+            {
+                return NotFound();
+            }
+
+            like = new Like
+            {
+                LikerId = id,
+                LikeeId = recipientId
+            };
+
+            _datingRepository.Add<Like>(like);
+
+            if (await _datingRepository.SaveAll())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Ha fallado en dar like a este usuario");
+        }
     }
 }

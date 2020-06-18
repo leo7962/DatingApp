@@ -34,6 +34,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { MemberEditResolver } from './resolvers/member-edit.resolver';
 import { PreventUnsaveChanges } from './guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
+import { ListsResolver } from './resolvers/lists.resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -98,7 +99,11 @@ export function tokenGetter() {
             canDeactivate: [PreventUnsaveChanges],
           },
           { path: 'messages', component: MessagesComponent },
-          { path: 'lists', component: ListsComponent },
+          {
+            path: 'lists',
+            component: ListsComponent,
+            resolve: { users: ListsResolver },
+          },
         ],
       },
       { path: '**', redirectTo: '', pathMatch: 'full' },
@@ -114,6 +119,7 @@ export function tokenGetter() {
     MemberListResolver,
     MemberEditResolver,
     PreventUnsaveChanges,
+    ListsResolver,
   ],
   bootstrap: [AppComponent],
 })
