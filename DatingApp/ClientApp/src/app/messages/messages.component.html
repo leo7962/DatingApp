@@ -52,19 +52,19 @@
           <div *ngIf="messageContainer != 'Outbox'">
             <img
               src="{{ message?.senderPhotoUrl }}"
-              class="img-circle rounded-circle"
+              class="img-circle rounded-circle mr-1"
             />
             <strong>{{ message.senderKnownAs }}</strong>
           </div>
           <div *ngIf="messageContainer == 'Outbox'">
             <img
               src="{{ message?.recipientPhotoUrl }}"
-              class="img-circle rounded-circle"
+              class="img-circle rounded-circle mr-1"
             />
             <strong>{{ message.recipientKnownAs }}</strong>
           </div>
         </td>
-        <td>{{ message}}</td>
+        <td>{{ message.messageSent | timeago }}</td>
         <td>
           <button class="btn btn-danger">Delete</button>
         </td>

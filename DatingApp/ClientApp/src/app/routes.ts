@@ -14,7 +14,7 @@ import { ListsComponent } from './lists/lists.component';
 import { ListsResolver } from './resolvers/lists.resolver';
 
 export const appRoutes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   {
     path: '',
     runGuardsAndResolvers: 'always',

@@ -11,7 +11,6 @@ import { AlertifyService } from '../services/alertify.service';
   templateUrl: './messages.component.html',
   styleUrls: ['./messages.component.css'],
 })
-
 export class MessagesComponent implements OnInit {
   messages: Message[];
   pagination: Pagination;
