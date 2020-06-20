@@ -5,19 +5,17 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-home',
   templateUrl: './home.component.html',
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit {
+  registerMode = false;
+  myAppUrl = '';
 
-  registerMode = false; 
-  myAppUrl: string = "";
-
-  constructor(private http: HttpClient, @Inject("BASE_URL") baseUrl: string) {    
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.myAppUrl = baseUrl;
   }
 
-  ngOnInit(){    
-  }
+  ngOnInit() {}
 
-  registerToggle(){
+  registerToggle() {
     this.registerMode = true;
   }
 

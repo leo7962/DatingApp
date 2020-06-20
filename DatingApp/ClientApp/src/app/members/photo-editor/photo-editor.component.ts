@@ -66,7 +66,10 @@ export class PhotoEditorComponent implements OnInit {
         if (photo.isMain) {
           this.authService.changeMemberPhoto(photo.url);
           this.authService.currentUser.photoUrl = photo.url;
-          localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
+          localStorage.setItem(
+            'user',
+            JSON.stringify(this.authService.currentUser)
+          );
         }
       }
     };
@@ -77,28 +80,38 @@ export class PhotoEditorComponent implements OnInit {
       .setMainPhoto(this.authService.decodedToken.nameid, photo.id)
       .subscribe(
         () => {
-          this.currentMain = this.photos.filter(p => p.isMain === true)[0];
+          this.currentMain = this.photos.filter((p) => p.isMain === true)[0];
           this.currentMain.isMain = false;
           photo.isMain = true;
           this.authService.changeMemberPhoto(photo.url);
           this.authService.currentUser.photoUrl = photo.url;
-          localStorage.setItem('user', JSON.stringify(this.authService.currentUser));
+          localStorage.setItem(
+            'user',
+            JSON.stringify(this.authService.currentUser)
+          );
         },
-        error => {
+        (error) => {
           this.alertify.error(error);
         }
       );
   }
 
-  deletePhoto(id: number){
-    this.alertify.confirm('¿Está seguro de eliminar la foto?', () =>{
-      this.userService.deletePhoto(this.authService.decodedToken.nameid, id).subscribe(() => {
-        this.photos.splice(this.photos.findIndex(p => p.id === id), 1);
-        this.alertify.success('La foto ha sido eliminada');
-      }, error => {
-        this.alertify.error('Ha fallado al eliminar la foto');
-      });
+  deletePhoto(id: number) {
+    this.alertify.confirm('¿Está seguro de eliminar la foto?', () => {
+      this.userService
+        .deletePhoto(this.authService.decodedToken.nameid, id)
+        .subscribe(
+          () => {
+            this.photos.splice(
+              this.photos.findIndex((p) => p.id === id),
+              1
+            );
+            this.alertify.success('La foto ha sido eliminada');
+          },
+          (error) => {
+            this.alertify.error('Ha fallado al eliminar la foto');
+          }
+        );
     });
   }
-
 }

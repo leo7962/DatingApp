@@ -35,6 +35,8 @@ import { MemberEditResolver } from './resolvers/member-edit.resolver';
 import { PreventUnsaveChanges } from './guards/prevent-unsaved-changes.guard';
 import { PhotoEditorComponent } from './members/photo-editor/photo-editor.component';
 import { ListsResolver } from './resolvers/lists.resolver';
+import { MessagesResolver } from './resolvers/messages.resolver';
+import { appRoutes } from './routes';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -53,6 +55,7 @@ export function tokenGetter() {
     MemberDetailComponent,
     MemberEditComponent,
     PhotoEditorComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -75,39 +78,7 @@ export function tokenGetter() {
     PaginationModule.forRoot(),
     ButtonsModule.forRoot(),
     NgxGalleryModule,
-    RouterModule.forRoot([
-      { path: '', component: HomeComponent },
-      {
-        path: '',
-        runGuardsAndResolvers: 'always',
-        canActivate: [AuthGuard],
-        children: [
-          {
-            path: 'members',
-            component: MemberListComponent,
-            resolve: { users: MemberListResolver },
-          },
-          {
-            path: 'members/:id',
-            component: MemberDetailComponent,
-            resolve: { user: MemberDetailResolver },
-          },
-          {
-            path: 'member/edit',
-            component: MemberEditComponent,
-            resolve: { user: MemberEditResolver },
-            canDeactivate: [PreventUnsaveChanges],
-          },
-          { path: 'messages', component: MessagesComponent },
-          {
-            path: 'lists',
-            component: ListsComponent,
-            resolve: { users: ListsResolver },
-          },
-        ],
-      },
-      { path: '**', redirectTo: '', pathMatch: 'full' },
-    ]),
+    RouterModule.forRoot(appRoutes),
   ],
   providers: [
     AuthService,
@@ -120,6 +91,7 @@ export function tokenGetter() {
     MemberEditResolver,
     PreventUnsaveChanges,
     ListsResolver,
+    MessagesResolver,
   ],
   bootstrap: [AppComponent],
 })
