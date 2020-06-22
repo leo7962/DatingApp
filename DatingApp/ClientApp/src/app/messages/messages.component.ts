@@ -49,6 +49,28 @@ export class MessagesComponent implements OnInit {
       );
   }
 
+  deleteMessage(id: number) {
+    this.alertify.confirm(
+      '¿Está seguro de eliminar este mensaje? esta acción es irreversible',
+      () => {
+        this.userService
+          .deleteMessage(id, this.authService.decodedToken.nameid)
+          .subscribe(
+            () => {
+              this.messages.splice(
+                this.messages.findIndex((m) => m.id === id),
+                1
+              );
+              this.alertify.success('El mensaje ha sido eliminado');
+            },
+            (error) => {
+              this.alertify.error(error);
+            }
+          );
+      }
+    );
+  }
+
   pageChanged(event: any): void {
     this.pagination.currentPage = event.page;
     this.loadMessages();

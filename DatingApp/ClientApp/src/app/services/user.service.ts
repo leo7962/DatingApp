@@ -62,7 +62,7 @@ export class UserService {
       );
   }
 
-  getUser(id): Observable<User> {
+  getUser(id: number): Observable<User> {
     return this.http.get<User>(this.baseUrl + 'api/users/' + id);
   }
 
@@ -121,5 +121,39 @@ export class UserService {
           return paginatedResult;
         })
       );
+  }
+
+  getMessageThread(id: number, recipientId: number) {
+    return this.http.get<Message[]>(
+      this.baseUrl + 'api/users/' + id + '/messages/thread/' + recipientId
+    );
+  }
+
+  sendMessage(id: number, message: Message) {
+    return this.http.post(
+      this.baseUrl + 'api/Users/' + id + '/messages',
+      message
+    );
+  }
+
+  deleteMessage(id: number, userId: number) {
+    return this.http.delete(
+      this.baseUrl + 'api/users/' + userId + '/messages/' + id,
+      {}
+    );
+  }
+
+  markAsRead(userId: number, messageId: number) {
+    this.http
+      .post(
+        this.baseUrl +
+          'api/users/' +
+          userId +
+          '/messages/' +
+          messageId +
+          '/read',
+        {}
+      )
+      .subscribe();
   }
 }

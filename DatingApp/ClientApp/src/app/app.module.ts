@@ -37,6 +37,7 @@ import { PhotoEditorComponent } from './members/photo-editor/photo-editor.compon
 import { ListsResolver } from './resolvers/lists.resolver';
 import { MessagesResolver } from './resolvers/messages.resolver';
 import { appRoutes } from './routes';
+import { MemberMessagesComponent } from './members/member-messages/member-messages.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -55,6 +56,7 @@ export function tokenGetter() {
     MemberDetailComponent,
     MemberEditComponent,
     PhotoEditorComponent,
+    MemberMessagesComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

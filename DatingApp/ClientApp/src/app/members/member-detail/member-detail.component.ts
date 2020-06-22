@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserService } from '../../services/user.service';
 import { AlertifyService } from '../../services/alertify.service';
@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
+import { TabsetComponent } from 'ngx-bootstrap/tabs';
 
 @Component({
   selector: 'app-member-detail',
@@ -13,9 +14,10 @@ import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
   styleUrls: ['./member-detail.component.css'],
 })
 export class MemberDetailComponent implements OnInit {
+  @ViewChild('memberTabs', { static: true }) memberTabs: TabsetComponent;
+  user: User;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
-  user: User;
 
   constructor(
     private userService: UserService,
@@ -26,6 +28,11 @@ export class MemberDetailComponent implements OnInit {
   ngOnInit() {
     this.route.data.subscribe((data) => {
       this.user = data['user'];
+    });
+
+    this.route.queryParams.subscribe((params) => {
+      const selectTab = params['tab'];
+      this.memberTabs.tabs[selectTab > 0 ? selectTab : 0].active = true;
     });
 
     this.galleryOptions = [
@@ -54,12 +61,7 @@ export class MemberDetailComponent implements OnInit {
     return imageUrls;
   }
 
-  // Ya no es necesario esta función
-  // loadUser() {
-  //   this.userService.getUser(this.route.snapshot.params['id']).subscribe((user: User) => {
-  //     this.user = user;
-  //   }, error => {
-  //     this.alertify.error(error);
-  //   });
-  // }
+  selectTabs(tabId: number) {
+    this.memberTabs.tabs[tabId].active = true;
+  }
 }
