@@ -30,9 +30,9 @@ namespace DatingApp.Controllers
         [HttpGet]
         public async Task<IActionResult> GetUsers([FromQuery] UserParams userParams)
         {
-            var currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            int currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
 
-            var userFromRepo = await _datingRepository.GetUser(currentUserId);
+            User userFromRepo = await _datingRepository.GetUser(currentUserId);
 
             userParams.UserId = currentUserId;
 
@@ -88,7 +88,7 @@ namespace DatingApp.Controllers
                 return Unauthorized();
             }
 
-            var like = await _datingRepository.GetLike(id, recipientId);
+            Like like = await _datingRepository.GetLike(id, recipientId);
 
             if (like != null)
             {
