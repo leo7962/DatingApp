@@ -1,14 +1,14 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { Message } from "../../models/message";
-import { UserService } from "../../services/user.service";
-import { AuthService } from "../../services/auth.service";
-import { AlertifyService } from "../../services/alertify.service";
-import { tap } from "rxjs/operators";
+import { Component, Input, OnInit } from '@angular/core';
+import { Message } from '../../models/message';
+import { UserService } from '../../services/user.service';
+import { AuthService } from '../../services/auth.service';
+import { AlertifyService } from '../../services/alertify.service';
+import { tap } from 'rxjs/operators';
 
 @Component({
-  selector: "app-member-messages",
-  templateUrl: "./member-messages.component.html",
-  styleUrls: ["./member-messages.component.css"],
+  selector: 'app-member-messages',
+  templateUrl: './member-messages.component.html',
+  styleUrls: ['./member-messages.component.css'],
 })
 export class MemberMessagesComponent implements OnInit {
   @Input() recipientId: number;
@@ -58,7 +58,7 @@ export class MemberMessagesComponent implements OnInit {
       .subscribe(
         (message: Message) => {
           this.messages.unshift(message);
-          this.newMessage.content = "";
+          this.newMessage.content = '';
         },
         (error) => {
           this.alertify.error(error);
