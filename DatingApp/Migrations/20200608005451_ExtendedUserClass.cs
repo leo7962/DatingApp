@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
 namespace DatingApp.Migrations
@@ -65,6 +66,7 @@ namespace DatingApp.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Url = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
