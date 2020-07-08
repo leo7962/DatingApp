@@ -4,12 +4,13 @@
       "type": "mssql",
       "connectionId": "connectionStrings/DefaultConnection"
     },
+    "appInsights1": {
+      "type": "appInsights",
+      "connectionId": null
+    },
     "secrets1": {
       "type": "secrets",
       "connectionId": "ASPNETCORE_HOSTINGSTARTUP__KEYVAULT__CONFIGURATIONVAULT"
-    },
-    "appInsights1": {
-      "type": "appInsights"
     }
   }
 }

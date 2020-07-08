@@ -6,12 +6,17 @@
       "connectionId": "connectionStrings/DefaultConnection",
       "secretStore": "AzureKeyVault"
     },
-    "secrets1": {
-      "type": "secrets.user",
-      "connectionId": "ASPNETCORE_HOSTINGSTARTUP__KEYVAULT__CONFIGURATIONVAULT"
-    },
     "appInsights1": {
-      "type": "appInsights.sdk"
+      "resourceId": null,
+      "type": "appInsights.sdk",
+      "connectionId": null,
+      "secretStore": null
+    },
+    "secrets1": {
+      "resourceId": null,
+      "type": "secrets.user",
+      "connectionId": "ASPNETCORE_HOSTINGSTARTUP__KEYVAULT__CONFIGURATIONVAULT",
+      "secretStore": null
     }
   }
 }
