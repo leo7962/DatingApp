@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -67,7 +68,7 @@ namespace DatingApp.Controllers
 
             if (file.Length > 0)
             {
-                using System.IO.Stream stream = file.OpenReadStream();
+                Stream stream = file.OpenReadStream();
                 ImageUploadParams uploadParams = new ImageUploadParams()
                 {
                     File = new FileDescription(file.Name, stream),

@@ -1,7 +1,10 @@
 using DatingApp.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace DatingApp.Contexts
 {
@@ -11,7 +14,7 @@ namespace DatingApp.Contexts
         {
             if (!context.Users.Any())
             {
-                string userData = System.IO.File.ReadAllText("Contexts/UserSeedData.json");
+                string userData = File.ReadAllText("Contexts/UserSeedData.json");
                 List<User> users = JsonConvert.DeserializeObject<List<User>>(userData);
                 foreach (User user in users)
                 {
@@ -29,10 +32,10 @@ namespace DatingApp.Contexts
 
         private static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
-            using (System.Security.Cryptography.HMACSHA512 hmac = new System.Security.Cryptography.HMACSHA512())
+            using (HMACSHA512 hmac = new HMACSHA512())
             {
                 passwordSalt = hmac.Key;
-                passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
             }
         }
     }

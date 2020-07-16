@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DatingApp.Controllers
@@ -23,7 +24,7 @@ namespace DatingApp.Controllers
         [HttpGet]
         public async Task<IActionResult> GetValues()
         {
-            System.Collections.Generic.List<Models.Value> values = await _context.Values.ToListAsync();
+            List<Models.Value> values = await _context.Values.ToListAsync();
 
             return Ok(values);
         }
