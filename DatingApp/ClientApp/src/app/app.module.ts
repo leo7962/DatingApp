@@ -79,7 +79,7 @@ export function tokenGetter() {
     PaginationModule.forRoot(),
     ButtonsModule.forRoot(),
     NgxGalleryModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' }),
   ],
   providers: [
     AuthService,
