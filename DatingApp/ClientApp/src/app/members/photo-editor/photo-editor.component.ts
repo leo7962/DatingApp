@@ -23,7 +23,7 @@ export class PhotoEditorComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     private alertify: AlertifyService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.initializeUploader();

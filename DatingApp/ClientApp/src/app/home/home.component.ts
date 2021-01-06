@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
     this.myAppUrl = baseUrl;
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   registerToggle() {
     this.registerMode = true;

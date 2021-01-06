@@ -16,7 +16,7 @@ export class ListsResolver implements Resolve<User[]> {
     private userService: UserService,
     private router: Router,
     private alertify: AlertifyService
-  ) {}
+  ) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<User[]> {
     return this.userService

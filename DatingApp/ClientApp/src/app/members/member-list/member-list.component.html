@@ -6,37 +6,31 @@
   <form class="form-inline" #form="ngForm" (ngSubmit)="loadUsers()" novalidate>
     <div class="form-group">
       <label for="minAge">Age From</label>
-      <input
-        type="number"
-        class="form-control ml-1"
-        style="width: 70px;"
-        id="minAge"
-        [(ngModel)]="userParams.minAge"
-        name="minAge"
-      />
+      <input type="number"
+             class="form-control ml-1"
+             style="width: 70px;"
+             id="minAge"
+             [(ngModel)]="userParams.minAge"
+             name="minAge" />
     </div>
 
     <div class="form-group px-2">
       <label for="maxAge">Age To</label>
-      <input
-        type="number"
-        class="form-control ml-1"
-        style="width: 70px;"
-        id="maxAge"
-        [(ngModel)]="userParams.maxAge"
-        name="maxAge"
-      />
+      <input type="number"
+             class="form-control ml-1"
+             style="width: 70px;"
+             id="maxAge"
+             [(ngModel)]="userParams.maxAge"
+             name="maxAge" />
     </div>
 
     <div class="form-group px-2">
       <label for="gender">Show: </label>
-      <select
-        class="form-control ml-1"
-        style="width: 130px;"
-        id="gender"
-        [(ngModel)]="userParams.gender"
-        name="gender"
-      >
+      <select class="form-control ml-1"
+              style="width: 130px;"
+              id="gender"
+              [(ngModel)]="userParams.gender"
+              name="gender">
         <option *ngFor="let gender of genderList" [value]="gender.value">
           {{ gender.display }}
         </option>
@@ -45,34 +39,28 @@
     <button type="submit" class="btn btn-primary" style="margin-left: 10px;">
       Apply Filters
     </button>
-    <button
-      type="button"
-      class="btn btn-info"
-      (click)="resetFilters()"
-      style="margin-left: 10px;"
-    >
+    <button type="button"
+            class="btn btn-info"
+            (click)="resetFilters()"
+            style="margin-left: 10px;">
       Reset Filter
     </button>
     <div class="col">
       <div class="btn-group float-right">
-        <button
-          type="button"
-          name="orderBy"
-          class="btn btn-primary"
-          [(ngModel)]="userParams.orderBy"
-          (click)="loadUsers()"
-          btnRadio="lastActive"
-        >
+        <button type="button"
+                name="orderBy"
+                class="btn btn-primary"
+                [(ngModel)]="userParams.orderBy"
+                (click)="loadUsers()"
+                btnRadio="lastActive">
           Last Active
         </button>
-        <button
-          type="button"
-          name="orderBy"
-          class="btn btn-primary"
-          [(ngModel)]="userParams.orderBy"
-          (click)="loadUsers()"
-          btnRadio="created"
-        >
+        <button type="button"
+                name="orderBy"
+                class="btn btn-primary"
+                [(ngModel)]="userParams.orderBy"
+                (click)="loadUsers()"
+                btnRadio="created">
           Newest Members
         </button>
       </div>
@@ -88,16 +76,14 @@
 </div>
 
 <div class="d-flex justify-content-center">
-  <pagination
-    [boundaryLinks]="true"
-    [totalItems]="pagination.totalItems"
-    [itemsPerPage]="pagination.itemsPerPage"
-    [(ngModel)]="pagination.currentPage"
-    (pageChanged)="pageChanged($event)"
-    previousText="&lsaquo;"
-    nextText="&rsaquo;"
-    firstText="&laquo;"
-    lastText="&raquo;"
-  >
+  <pagination [boundaryLinks]="true"
+              [totalItems]="pagination.totalItems"
+              [itemsPerPage]="pagination.itemsPerPage"
+              [(ngModel)]="pagination.currentPage"
+              (pageChanged)="pageChanged($event)"
+              previousText="&lsaquo;"
+              nextText="&rsaquo;"
+              firstText="&laquo;"
+              lastText="&raquo;">
   </pagination>
 </div>

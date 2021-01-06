@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private alertify: AlertifyService,
     private fb: FormBuilder
-  ) {}
+  ) { }
 
   ngOnInit() {
     (this.bsConfig = {

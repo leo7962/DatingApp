@@ -13,7 +13,7 @@ import { Message } from 'src/app/models/message';
 export class UserService {
   baseUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getUsers(
     page?,
@@ -147,11 +147,11 @@ export class UserService {
     this.http
       .post(
         this.baseUrl +
-          'api/users/' +
-          userId +
-          '/messages/' +
-          messageId +
-          '/read',
+        'api/users/' +
+        userId +
+        '/messages/' +
+        messageId +
+        '/read',
         {}
       )
       .subscribe();

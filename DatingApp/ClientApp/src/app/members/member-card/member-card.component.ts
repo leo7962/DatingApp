@@ -16,9 +16,9 @@ export class MemberCardComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     private alertify: AlertifyService
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   sendLike(id: number) {
     this.userService

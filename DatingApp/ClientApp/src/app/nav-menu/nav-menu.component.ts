@@ -16,7 +16,7 @@ export class NavMenuComponent implements OnInit {
     public authService: AuthService,
     private alertify: AlertifyService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.authService.currentPhotoUrl.subscribe(

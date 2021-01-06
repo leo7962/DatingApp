@@ -21,7 +21,7 @@ export class MessagesComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private alertify: AlertifyService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.route.data.subscribe((data) => {

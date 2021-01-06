@@ -2,21 +2,17 @@
   <div class="col-sm-2" *ngFor="let photo of photos">
     <img src="{{ photo.url }}" class="img-thumbnail p-1" alt="" />
     <div class="text-center">
-      <button
-        type="button"
-        class="btn btn-sm mr-1"
-        (click)="setMainPhoto(photo)"
-        [ngClass]="photo.isMain ? 'btn-success active' : 'btn-secondary'"
-        [disabled]="photo.isMain"
-      >
+      <button type="button"
+              class="btn btn-sm mr-1"
+              (click)="setMainPhoto(photo)"
+              [ngClass]="photo.isMain ? 'btn-success active' : 'btn-secondary'"
+              [disabled]="photo.isMain">
         Main
       </button>
-      <button
-        type="button"
-        class="btn btn-sm btn-danger"
-        (click)="deletePhoto(photo.id)"
-        [disabled]="photo.isMain"
-      >
+      <button type="button"
+              class="btn btn-sm btn-danger"
+              (click)="deletePhoto(photo.id)"
+              [disabled]="photo.isMain">
         <i class="fa fa-trash-o"></i>
       </button>
     </div>
@@ -27,13 +23,11 @@
   <div class="col-sm-3 col-md-3 col-lg-3">
     <h3>Agregar fotos</h3>
 
-    <div
-      ng2FileDrop
-      [ngClass]="{ 'nv-file-over': hasBaseDropZoneOver }"
-      (fileOver)="fileOverBase($event)"
-      [uploader]="uploader"
-      class="card bg-faded p-3 text-center mb-3 my-drop-zone"
-    >
+    <div ng2FileDrop
+         [ngClass]="{ 'nv-file-over': hasBaseDropZoneOver }"
+         (fileOver)="fileOverBase($event)"
+         [uploader]="uploader"
+         class="card bg-faded p-3 text-center mb-3 my-drop-zone">
       <i class="fa fa-upload fa-3x"></i>
       Arrastra las imagenes, ¡Aquí!
     </div>
@@ -45,11 +39,9 @@
     <input type="file" ng2FileSelect [uploader]="uploader" />
   </div>
 
-  <div
-    class="col-md-9"
-    style="margin-bottom: 40px;"
-    *ngIf="uploader?.queue?.length"
-  >
+  <div class="col-md-9"
+       style="margin-bottom: 40px;"
+       *ngIf="uploader?.queue?.length">
     <h3>Upload queue</h3>
     <p>Queue length: {{ uploader?.queue?.length }}</p>
 
@@ -76,35 +68,27 @@
       <div>
         Queue progress:
         <div class="progress mb-4">
-          <div
-            class="progress-bar"
-            role="progressbar"
-            [ngStyle]="{ width: uploader.progress + '%' }"
-          ></div>
+          <div class="progress-bar"
+               role="progressbar"
+               [ngStyle]="{ width: uploader.progress + '%' }"></div>
         </div>
       </div>
-      <button
-        type="button"
-        class="btn btn-success btn-s"
-        (click)="uploader.uploadAll()"
-        [disabled]="!uploader.getNotUploadedItems().length"
-      >
+      <button type="button"
+              class="btn btn-success btn-s"
+              (click)="uploader.uploadAll()"
+              [disabled]="!uploader.getNotUploadedItems().length">
         <span class="fa fa-upload"></span> Upload
       </button>
-      <button
-        type="button"
-        class="btn btn-warning btn-s"
-        (click)="uploader.cancelAll()"
-        [disabled]="!uploader.isUploading"
-      >
+      <button type="button"
+              class="btn btn-warning btn-s"
+              (click)="uploader.cancelAll()"
+              [disabled]="!uploader.isUploading">
         <span class="da da-ban"></span> Cancel
       </button>
-      <button
-        type="button"
-        class="btn btn-danger btn-s"
-        (click)="uploader.clearQueue()"
-        [disabled]="!uploader.queue.length"
-      >
+      <button type="button"
+              class="btn btn-danger btn-s"
+              (click)="uploader.clearQueue()"
+              [disabled]="!uploader.queue.length">
         <span class="fa fa-trash"></span> Remove
       </button>
     </div>

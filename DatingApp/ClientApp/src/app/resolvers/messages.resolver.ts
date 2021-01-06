@@ -18,7 +18,7 @@ export class MessagesResolver implements Resolve<Message[]> {
     private authService: AuthService,
     private router: Router,
     private alertify: AlertifyService
-  ) {}
+  ) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<Message[]> {
     return this.userService

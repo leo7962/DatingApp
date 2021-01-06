@@ -14,15 +14,15 @@ export class MemberEditResolver implements Resolve<User> {
     private authService: AuthService,
     private router: Router,
     private alertify: AlertifyService
-  ) {}
+  ) { }
 
   resolve(route: ActivatedRouteSnapshot): Observable<User> {
-      return this.userService.getUser(this.authService.decodedToken.nameid).pipe(
-          catchError(error => {
-              this.alertify.error('Problema al recuperar sus datos');
-              this.router.navigate(['/members']);
-              return of(null);
-          })
-      );
+    return this.userService.getUser(this.authService.decodedToken.nameid).pipe(
+      catchError(error => {
+        this.alertify.error('Problema al recuperar sus datos');
+        this.router.navigate(['/members']);
+        return of(null);
+      })
+    );
   }
 }
