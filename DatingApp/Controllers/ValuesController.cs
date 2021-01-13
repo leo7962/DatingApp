@@ -1,4 +1,5 @@
 ﻿using DatingApp.Contexts;
+using DatingApp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +25,7 @@ namespace DatingApp.Controllers
         [HttpGet]
         public async Task<IActionResult> GetValues()
         {
-            List<Models.Value> values = await _context.Values.ToListAsync();
+            List<Value> values = await _context.Values.ToListAsync();
 
             return Ok(values);
         }
@@ -34,7 +35,7 @@ namespace DatingApp.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id)
         {
-            Models.Value value = await _context.Values.FirstOrDefaultAsync(x => x.Id == id);
+            Value value = await _context.Values.FirstOrDefaultAsync(x => x.Id == id);
 
             return Ok(value);
         }
