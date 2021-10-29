@@ -18,34 +18,24 @@ namespace DatingApp.Contexts
 
         public async Task<User> Login(string username, string password)
         {
-            User user = await _context.Users.Include(p => p.Photos).FirstOrDefaultAsync(x => x.Username == username);
+            var user = await _context.Users.Include(p => p.Photos).FirstOrDefaultAsync(x => x.Username == username);
 
-            if (user == null)
-            {
-                return null;
-            }
+            if (user == null) return null;
 
-            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
-            {
-                return null;
-            }
+            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt)) return null;
 
             return user;
         }
 
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {
-            using (HMACSHA512 hmac = new HMACSHA512(passwordSalt))
+            using (var hmac = new HMACSHA512(passwordSalt))
             {
-                byte[] computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+                var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
 
-                for (int i = 0; i < computedHash.Length; i++)
-                {
+                for (var i = 0; i < computedHash.Length; i++)
                     if (computedHash[i] != passwordHash[i])
-                    {
                         return false;
-                    }
-                }
             }
 
             return true;
@@ -53,7 +43,7 @@ namespace DatingApp.Contexts
 
         public async Task<User> Register(User user, string password)
         {
-            CreatePasswordHash(password, out byte[] passwordHash, out byte[] passwordSalt);
+            CreatePasswordHash(password, out var passwordHash, out var passwordSalt);
 
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
@@ -66,7 +56,7 @@ namespace DatingApp.Contexts
 
         private void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {
-            using (HMACSHA512 hmac = new HMACSHA512())
+            using (var hmac = new HMACSHA512())
             {
                 passwordSalt = hmac.Key;
                 passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
@@ -75,10 +65,7 @@ namespace DatingApp.Contexts
 
         public async Task<bool> UserExists(string username)
         {
-            if (await _context.Users.AnyAsync(x => x.Username == username))
-            {
-                return true;
-            }
+            if (await _context.Users.AnyAsync(x => x.Username == username)) return true;
 
             return false;
         }

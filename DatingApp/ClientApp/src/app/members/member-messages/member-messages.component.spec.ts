@@ -1,9 +1,9 @@
 /* tslint:disable:no-unused-variable */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {DebugElement} from '@angular/core';
 
-import { MemberMessagesComponent } from './member-messages.component';
+import {MemberMessagesComponent} from './member-messages.component';
 
 describe('MemberMessagesComponent', () => {
   let component: MemberMessagesComponent;
@@ -11,9 +11,9 @@ describe('MemberMessagesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ MemberMessagesComponent ]
+      declarations: [MemberMessagesComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

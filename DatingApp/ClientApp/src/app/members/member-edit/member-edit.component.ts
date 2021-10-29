@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
-import { User } from 'src/app/models/user';
-import { ActivatedRoute } from '@angular/router';
-import { AlertifyService } from 'src/app/services/alertify.service';
-import { NgForm } from '@angular/forms';
-import { UserService } from '../../services/user.service';
-import { AuthService } from '../../services/auth.service';
+import {Component, OnInit, ViewChild, HostListener} from '@angular/core';
+import {User} from 'src/app/models/user';
+import {ActivatedRoute} from '@angular/router';
+import {AlertifyService} from 'src/app/services/alertify.service';
+import {NgForm} from '@angular/forms';
+import {UserService} from '../../services/user.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-member-edit',
@@ -12,9 +12,10 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./member-edit.component.css'],
 })
 export class MemberEditComponent implements OnInit {
-  @ViewChild('editForm', { static: true }) editForm: NgForm;
+  @ViewChild('editForm', {static: true}) editForm: NgForm;
   user: User;
   photoUrl: string;
+
   @HostListener('window:beforeunload', ['$event'])
   unloadNotifcation($event: any) {
     if (this.editForm.dirty) {
@@ -27,7 +28,8 @@ export class MemberEditComponent implements OnInit {
     private alertify: AlertifyService,
     private userService: UserService,
     private authService: AuthService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.route.data.subscribe((data) => {

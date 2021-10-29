@@ -1,9 +1,9 @@
 /* tslint:disable:no-unused-variable */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {DebugElement} from '@angular/core';
 
-import { PhotoEditorComponent } from './photo-editor.component';
+import {PhotoEditorComponent} from './photo-editor.component';
 
 describe('PhotoEditorComponent', () => {
   let component: PhotoEditorComponent;
@@ -11,9 +11,9 @@ describe('PhotoEditorComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PhotoEditorComponent ]
+      declarations: [PhotoEditorComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

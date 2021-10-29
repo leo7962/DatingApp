@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
-import { AlertifyService } from '../services/alertify.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../services/auth.service';
+import {AlertifyService} from '../services/alertify.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-nav-menu',
@@ -16,7 +16,8 @@ export class NavMenuComponent implements OnInit {
     public authService: AuthService,
     private alertify: AlertifyService,
     private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.authService.currentPhotoUrl.subscribe(

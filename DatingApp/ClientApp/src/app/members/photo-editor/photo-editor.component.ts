@@ -1,10 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Photo } from 'src/app/models/photo';
-import { FileUploader } from 'ng2-file-upload';
-import { environment } from 'src/environments/environment';
-import { AuthService } from 'src/app/services/auth.service';
-import { UserService } from 'src/app/services/user.service';
-import { AlertifyService } from 'src/app/services/alertify.service';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Photo} from 'src/app/models/photo';
+import {FileUploader} from 'ng2-file-upload';
+import {environment} from 'src/environments/environment';
+import {AuthService} from 'src/app/services/auth.service';
+import {UserService} from 'src/app/services/user.service';
+import {AlertifyService} from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-photo-editor',
@@ -23,7 +23,8 @@ export class PhotoEditorComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     private alertify: AlertifyService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.initializeUploader();

@@ -1,15 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AuthService } from '../services/auth.service';
-import { AlertifyService } from '../services/alertify.service';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {AuthService} from '../services/auth.service';
+import {AlertifyService} from '../services/alertify.service';
 import {
   FormGroup,
   FormControl,
   Validators,
   FormBuilder,
 } from '@angular/forms';
-import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { User } from '../models/user';
-import { Router } from '@angular/router';
+import {BsDatepickerConfig} from 'ngx-bootstrap/datepicker';
+import {User} from '../models/user';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -27,7 +27,8 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private alertify: AlertifyService,
     private fb: FormBuilder
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     (this.bsConfig = {
@@ -55,14 +56,14 @@ export class RegisterComponent implements OnInit {
         ],
         confirmPassword: ['', Validators.required],
       },
-      { validators: this.passwordMatchValidator }
+      {validators: this.passwordMatchValidator}
     );
   }
 
   passwordMatchValidator(g: FormGroup) {
     return g.get('password').value === g.get('confirmPassword').value
       ? null
-      : { mismatch: true };
+      : {mismatch: true};
   }
 
   register() {

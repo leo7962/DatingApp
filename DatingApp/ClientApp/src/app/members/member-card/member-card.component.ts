@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { User } from '../../models/user';
-import { AuthService } from 'src/app/services/auth.service';
-import { UserService } from 'src/app/services/user.service';
-import { AlertifyService } from 'src/app/services/alertify.service';
+import {Component, OnInit, Input} from '@angular/core';
+import {User} from '../../models/user';
+import {AuthService} from 'src/app/services/auth.service';
+import {UserService} from 'src/app/services/user.service';
+import {AlertifyService} from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-member-card',
@@ -16,9 +16,11 @@ export class MemberCardComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     private alertify: AlertifyService
-  ) { }
+  ) {
+  }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   sendLike(id: number) {
     this.userService

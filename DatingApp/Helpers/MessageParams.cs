@@ -9,8 +9,9 @@
         public int PageSize
         {
             get => pageSize;
-            set => pageSize = (value > MaxPageSize) ? MaxPageSize : value;
+            set => pageSize = value > MaxPageSize ? MaxPageSize : value;
         }
+
         public int UserId { get; set; }
         public string MessageContainer { get; set; } = "Unread";
     }

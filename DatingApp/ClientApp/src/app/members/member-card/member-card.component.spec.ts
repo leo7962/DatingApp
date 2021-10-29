@@ -1,9 +1,9 @@
 /* tslint:disable:no-unused-variable */
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {By} from '@angular/platform-browser';
+import {DebugElement} from '@angular/core';
 
-import { MemberCardComponent } from './member-card.component';
+import {MemberCardComponent} from './member-card.component';
 
 describe('MemberCardComponent', () => {
   let component: MemberCardComponent;

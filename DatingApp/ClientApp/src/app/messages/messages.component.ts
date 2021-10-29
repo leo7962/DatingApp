@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Message } from 'src/app/models/message';
-import { Pagination, PaginatedResult } from '../models/pagination';
-import { UserService } from '../services/user.service';
-import { AuthService } from '../services/auth.service';
-import { ActivatedRoute } from '@angular/router';
-import { AlertifyService } from '../services/alertify.service';
+import {Component, OnInit} from '@angular/core';
+import {Message} from 'src/app/models/message';
+import {Pagination, PaginatedResult} from '../models/pagination';
+import {UserService} from '../services/user.service';
+import {AuthService} from '../services/auth.service';
+import {ActivatedRoute} from '@angular/router';
+import {AlertifyService} from '../services/alertify.service';
 
 @Component({
   selector: 'app-messages',
@@ -21,7 +21,8 @@ export class MessagesComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private alertify: AlertifyService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.route.data.subscribe((data) => {

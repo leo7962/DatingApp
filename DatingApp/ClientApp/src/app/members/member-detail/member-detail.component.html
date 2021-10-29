@@ -5,7 +5,8 @@
   <div class="row">
     <div class="col-sm-4 col-md-4 col-lg-4">
       <div class="card">
-        <img class="card-img-top img-thumbnail" src="{{user.photoUrl || '../../../../../assets/user.png' }}" alt="{{user.knownAs}}">
+        <img class="card-img-top img-thumbnail" src="{{user.photoUrl || '../../../../../assets/user.png' }}"
+             alt="{{user.knownAs}}">
         <div class="card-body">
           <div>
             <strong>Location:</strong>
@@ -46,7 +47,8 @@
             <p>{{user.interests}}</p>
           </tab>
           <tab heading="Photos">
-            <ngx-gallery style="display: inline-block; margin-bottom: 20px;" [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
+            <ngx-gallery style="display: inline-block; margin-bottom: 20px;" [options]="galleryOptions"
+                         [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
           </tab>
           <tab heading="Messages">
             <app-member-messages [recipientId]="user.id"></app-member-messages>

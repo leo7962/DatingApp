@@ -1,7 +1,7 @@
 <div class="text-center mt-3">
   <h2>
     {{
-      likesParam === "Likers" ? "Members who like me" : "Members who I've Liked"
+    likesParam === "Likers" ? "Members who like me" : "Members who I've Liked"
     }}
     : {{ pagination.totalItems }}
   </h2>
@@ -25,7 +25,7 @@
     </div>
   </div>
 
-  <br />
+  <br/>
 
   <div class="row">
     <div *ngFor="let user of users" class="col-sm-6 col-md-4 col-lg-4 col-xl-2">

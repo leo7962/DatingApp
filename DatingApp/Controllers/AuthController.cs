@@ -36,15 +36,13 @@ namespace DatingApp.Controllers
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
 
             if (await _authRepository.UserExists(userForRegisterDto.Username))
-            {
                 return BadRequest("¡El nombre de usuario ya existe!");
-            }
 
-            User userToCreate = _mapper.Map<User>(userForRegisterDto);
+            var userToCreate = _mapper.Map<User>(userForRegisterDto);
 
-            User createdUser = await _authRepository.Register(userToCreate, userForRegisterDto.Password);
+            var createdUser = await _authRepository.Register(userToCreate, userForRegisterDto.Password);
 
-            UserForDetailedDto userToReturn = _mapper.Map<UserForDetailedDto>(createdUser);
+            var userToReturn = _mapper.Map<UserForDetailedDto>(createdUser);
 
             return CreatedAtRoute("GetUser", new { controller = "Users", id = createdUser.Id }, userToReturn);
         }
@@ -52,35 +50,33 @@ namespace DatingApp.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserForLoginDto userForLoginDto)
         {
-            User userFromRepo = await _authRepository.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
+            var userFromRepo =
+                await _authRepository.Login(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
 
-            if (userFromRepo == null)
-            {
-                return Unauthorized();
-            }
+            if (userFromRepo == null) return Unauthorized();
 
-            Claim[] claims = new[]
+            var claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, userFromRepo.Id.ToString()),
                 new Claim(ClaimTypes.Name, userFromRepo.Username)
             };
 
-            SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
 
-            SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
 
-            SecurityTokenDescriptor tokenDescriptor = new SecurityTokenDescriptor
+            var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now.AddHours(6),
                 SigningCredentials = creds
             };
 
-            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+            var tokenHandler = new JwtSecurityTokenHandler();
 
-            SecurityToken token = tokenHandler.CreateToken(tokenDescriptor);
+            var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            UserForListDto user = _mapper.Map<UserForListDto>(userFromRepo);
+            var user = _mapper.Map<UserForListDto>(userFromRepo);
 
 
             return Ok(new

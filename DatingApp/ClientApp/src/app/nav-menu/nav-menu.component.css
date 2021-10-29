@@ -1,8 +1,8 @@
-.dropdown-toggle, .dropdown-item{
-cursor: pointer;
+.dropdown-toggle, .dropdown-item {
+  cursor: pointer;
 }
 
-img{
+img {
   max-height: 50px;
   border: 2px solid white;
   display: inline;
@@ -17,6 +17,7 @@ a.navbar-brand {
 html {
   font-size: 14px;
 }
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;

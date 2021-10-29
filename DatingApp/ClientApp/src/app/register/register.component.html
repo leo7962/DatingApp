@@ -7,17 +7,17 @@
       <input class="mr-3"
              type="radio"
              value="male"
-             formControlName="gender" />Male
+             formControlName="gender"/>Male
     </label>
     <label class="radio-inline ml-3">
       <input class="mr-3"
              type="radio"
              value="female"
-             formControlName="gender" />Female
+             formControlName="gender"/>Female
     </label>
   </div>
 
-  <hr />
+  <hr/>
   <div class="form-group">
     <input type="text"
            [ngClass]="{
@@ -27,7 +27,7 @@
       }"
            class="form-control"
            formControlName="username"
-           placeholder="Username" />
+           placeholder="Username"/>
     <div class="invalid-feedback">
       Por favor seleccione un nombre de usuario
     </div>
@@ -41,7 +41,7 @@
       }"
            class="form-control"
            placeholder="Known as"
-           formControlName="knownAs" />
+           formControlName="knownAs"/>
     <div class="invalid-feedback"
          *ngIf="
         registerForm.get('knownAs').touched &&
@@ -62,7 +62,7 @@
            formControlName="dateOfBirth"
            type="text"
            bsDatepicker
-           [bsConfig]="bsConfig" />
+           [bsConfig]="bsConfig"/>
     <div class="invalid-feedback"
          *ngIf="
         registerForm.get('dateOfBirth').touched &&
@@ -79,7 +79,7 @@
       }"
            class="form-control"
            placeholder="City"
-           formControlName="city" />
+           formControlName="city"/>
     <div class="invalid-feedback"
          *ngIf="
         registerForm.get('city').touched &&
@@ -97,7 +97,7 @@
       }"
            class="form-control"
            placeholder="Country"
-           formControlName="country" />
+           formControlName="country"/>
     <div class="invalid-feedback"
          *ngIf="
         registerForm.get('country').touched &&
@@ -116,7 +116,7 @@
       }"
            class="form-control"
            formControlName="password"
-           placeholder="Password" />
+           placeholder="Password"/>
     <div class="invalid-feedback"
          *ngIf="
         registerForm.get('password').hasError('required') &&
@@ -151,7 +151,7 @@
       }"
            class="form-control"
            formControlName="confirmPassword"
-           placeholder="Confirm password" />
+           placeholder="Confirm password"/>
     <div class="invalid-feedback"
          *ngIf="
         registerForm.get('confirmPassword').hasError('required') &&

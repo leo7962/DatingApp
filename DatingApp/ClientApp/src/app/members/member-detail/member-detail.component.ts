@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { User } from 'src/app/models/user';
-import { UserService } from '../../services/user.service';
-import { AlertifyService } from '../../services/alertify.service';
-import { ActivatedRoute } from '@angular/router';
-import { NgxGalleryOptions } from '@kolkov/ngx-gallery';
-import { NgxGalleryImage } from '@kolkov/ngx-gallery';
-import { NgxGalleryAnimation } from '@kolkov/ngx-gallery';
-import { TabsetComponent } from 'ngx-bootstrap/tabs';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {User} from 'src/app/models/user';
+import {UserService} from '../../services/user.service';
+import {AlertifyService} from '../../services/alertify.service';
+import {ActivatedRoute} from '@angular/router';
+import {NgxGalleryOptions} from '@kolkov/ngx-gallery';
+import {NgxGalleryImage} from '@kolkov/ngx-gallery';
+import {NgxGalleryAnimation} from '@kolkov/ngx-gallery';
+import {TabsetComponent} from 'ngx-bootstrap/tabs';
 
 @Component({
   selector: 'app-member-detail',
@@ -14,7 +14,7 @@ import { TabsetComponent } from 'ngx-bootstrap/tabs';
   styleUrls: ['./member-detail.component.css'],
 })
 export class MemberDetailComponent implements OnInit {
-  @ViewChild('memberTabs', { static: true }) memberTabs: TabsetComponent;
+  @ViewChild('memberTabs', {static: true}) memberTabs: TabsetComponent;
   user: User;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
@@ -23,7 +23,8 @@ export class MemberDetailComponent implements OnInit {
     private userService: UserService,
     private alertify: AlertifyService,
     private route: ActivatedRoute
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.route.data.subscribe((data) => {

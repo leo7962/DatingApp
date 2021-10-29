@@ -1,5 +1,5 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Component, OnInit, Inject} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +13,8 @@ export class HomeComponent implements OnInit {
     this.myAppUrl = baseUrl;
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   registerToggle() {
     this.registerMode = true;

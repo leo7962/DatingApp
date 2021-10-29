@@ -14,10 +14,11 @@ namespace DatingApp.Helpers
             response.Headers.Add("Access-Control-Allow-Origin", "*");
         }
 
-        public static void AddPagination(this HttpResponse response, int currentPage, int itemsPerPage, int totalItems, int totalPages)
+        public static void AddPagination(this HttpResponse response, int currentPage, int itemsPerPage, int totalItems,
+            int totalPages)
         {
-            PaginationHeader paginationHeader = new PaginationHeader(currentPage, itemsPerPage, totalItems, totalPages);
-            JsonSerializerSettings camelCaseFormatter = new JsonSerializerSettings
+            var paginationHeader = new PaginationHeader(currentPage, itemsPerPage, totalItems, totalPages);
+            var camelCaseFormatter = new JsonSerializerSettings
             {
                 ContractResolver = new CamelCasePropertyNamesContractResolver()
             };
@@ -27,11 +28,8 @@ namespace DatingApp.Helpers
 
         public static int CalculateAge(this DateTime theDateTime)
         {
-            int age = DateTime.Today.Year - theDateTime.Year;
-            if (theDateTime.AddYears(age) > DateTime.Today)
-            {
-                age--;
-            }
+            var age = DateTime.Today.Year - theDateTime.Year;
+            if (theDateTime.AddYears(age) > DateTime.Today) age--;
 
             return age;
         }

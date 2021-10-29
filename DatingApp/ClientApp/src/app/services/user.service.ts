@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environment';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { User } from '../models/user';
-import { PaginatedResult } from '../models/pagination';
-import { map } from 'rxjs/operators';
-import { Message } from 'src/app/models/message';
+import {Injectable} from '@angular/core';
+import {environment} from '../../environments/environment';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {User} from '../models/user';
+import {PaginatedResult} from '../models/pagination';
+import {map} from 'rxjs/operators';
+import {Message} from 'src/app/models/message';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,8 @@ import { Message } from 'src/app/models/message';
 export class UserService {
   baseUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getUsers(
     page?,
@@ -21,9 +22,7 @@ export class UserService {
     userParams?,
     likesParams?
   ): Observable<PaginatedResult<User[]>> {
-    const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<
-      User[]
-    >();
+    const paginatedResult: PaginatedResult<User[]> = new PaginatedResult<User[]>();
 
     let params = new HttpParams();
 
@@ -48,7 +47,7 @@ export class UserService {
     }
 
     return this.http
-      .get<User[]>(this.baseUrl + 'api/users', { observe: 'response', params })
+      .get<User[]>(this.baseUrl + 'api/users', {observe: 'response', params})
       .pipe(
         map((response) => {
           paginatedResult.result = response.body;
@@ -91,9 +90,7 @@ export class UserService {
   }
 
   getMessages(id: number, page?, itemsPerPage?, messageContainer?) {
-    const paginatedResult: PaginatedResult<Message[]> = new PaginatedResult<
-      Message[]
-    >();
+    const paginatedResult: PaginatedResult<Message[]> = new PaginatedResult<Message[]>();
 
     let params = new HttpParams();
 

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '../models/user';
-import { Pagination, PaginatedResult } from '../models/pagination';
-import { AuthService } from '../services/auth.service';
-import { UserService } from '../services/user.service';
-import { ActivatedRoute } from '@angular/router';
-import { AlertifyService } from '../services/alertify.service';
+import {Component, OnInit} from '@angular/core';
+import {User} from '../models/user';
+import {Pagination, PaginatedResult} from '../models/pagination';
+import {AuthService} from '../services/auth.service';
+import {UserService} from '../services/user.service';
+import {ActivatedRoute} from '@angular/router';
+import {AlertifyService} from '../services/alertify.service';
 
 @Component({
   selector: 'app-lists',
@@ -21,7 +21,8 @@ export class ListsComponent implements OnInit {
     private userService: UserService,
     private route: ActivatedRoute,
     private alertify: AlertifyService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     this.route.data.subscribe((data) => {
